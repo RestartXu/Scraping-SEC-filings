@@ -1,0 +1,30 @@
+name: Python Action
+
+on:
+  push:
+    branches:
+      - main  # 你可以修改这里的分支名称
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'  # 你可以指定 Python 版本，比如 '3.8' 或 '3.9'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install beautifulsoup4
+        pip install pandas
+        python -v
+     
+    - name: Run Python script
+      run: python 1.py  # 替换为你要运行的 Python 脚本的路径
